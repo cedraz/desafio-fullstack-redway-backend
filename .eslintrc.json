@@ -26,11 +26,12 @@
         ],
         "quotes": [
             "error",
-            "double"
+            "single"
         ],
         "semi": [
             "error",
             "never"
-        ]
+        ],
+        "@typescript-eslint/no-unused-vars": "warn"
     }
 }
