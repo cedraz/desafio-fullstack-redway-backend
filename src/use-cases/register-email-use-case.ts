@@ -22,8 +22,6 @@ export class RegisterEmailUseCase {
 
         const registeredEmail = await this.emailsRepository.registerEmail({ email })
 
-        console.log(registeredEmail, typeof registeredEmail)
-
         return { registeredEmail }
     }
 }

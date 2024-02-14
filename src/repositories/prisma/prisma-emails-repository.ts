@@ -3,6 +3,12 @@ import { EmailsRepository } from '@/repositories/emails-repository'
 import { prisma } from '@/lib/prisma'
 
 export class PrismaEmailsRepository implements EmailsRepository {
+    async findEmails() {
+        const emails = await prisma.email.findMany()
+
+        return emails
+    }
+
     async findEmail({ email }: { email: string }) {
         const foundEmail = await prisma.email.findUnique({
             where: {

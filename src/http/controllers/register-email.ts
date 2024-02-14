@@ -15,8 +15,6 @@ export async function registerEmail(request: FastifyRequest, reply: FastifyReply
 
         const { registeredEmail } = await registerEmailUseCase.handle({ email })
 
-        console.log(registeredEmail.email, typeof registeredEmail)
-
         return reply.status(201).send({ message: 'Email registered', email: registeredEmail.email })
     } catch (error) {
         if (error instanceof EmailAlreadyExistsError) {
