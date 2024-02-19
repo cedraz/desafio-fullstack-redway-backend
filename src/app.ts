@@ -1,9 +1,61 @@
-import fastify from 'fastify'
+// Fastify
+import fastify, { FastifyReply, FastifyRequest } from 'fastify'
 import { appRoutes } from '@/http/routes'
+
+// Zod
 import { ZodError } from 'zod'
+
+// Cors
 import cors from '@fastify/cors'
 
+// Swagger
+import fastifySwagger from '@fastify/swagger'
+import fastifySwaggerUi from '@fastify/swagger-ui'
+
 export const app = fastify()
+
+const swaggerOptions = {
+    swagger: {
+        info: {
+            title: 'My Title',
+            description: 'My Description.',
+            version: '1.0.0',
+        },
+        host: 'localhost',
+        schemes: ['http', 'https'],
+        consumes: ['application/json'],
+        produces: ['application/json'],
+        tags: [{ name: 'Default', description: 'Default' }],
+    },
+}
+
+const swaggerUiOptions = {
+    routePrefix: '/docs',
+    exposeRoute: true,
+}
+
+app.register((app, options, done) => {
+    app.get('/', {
+        schema: {
+            tags: ['Default'],
+            response: {
+                200: {
+                    type: 'object',
+                    properties: {
+                        anything: { type: 'string' },
+                    },
+                },
+            },
+        },
+        handler: (req, res) => {
+            res.send({ message: 'API rodando' })
+        },
+    })
+    done()
+})
+
+app.register(fastifySwagger, swaggerOptions)
+app.register(fastifySwaggerUi, swaggerUiOptions)
 
 app.register(appRoutes)
 

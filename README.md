@@ -121,3 +121,9 @@ para rodar a API em desenvolvimento, execute o comando:
 ```sh
 npm run start:dev
 ```
+
+<br/>
+
+Após rodar a API, acesse a documentação da API em:
+
+http://localhost:3333/docs
