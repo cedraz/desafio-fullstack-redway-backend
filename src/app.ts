@@ -1,5 +1,5 @@
 // Fastify
-import fastify, { FastifyReply, FastifyRequest } from 'fastify'
+import fastify from 'fastify'
 import { appRoutes } from '@/http/routes'
 
 // Zod
@@ -26,7 +26,7 @@ const swaggerOptions = {
         consumes: ['application/json'],
         produces: ['application/json'],
         tags: [{ name: 'Default', description: 'Default' }],
-    },
+    }
 }
 
 const swaggerUiOptions = {
@@ -42,7 +42,7 @@ app.register((app, options, done) => {
                 200: {
                     type: 'object',
                     properties: {
-                        anything: { type: 'string' },
+                        message: { type: 'string' },
                     },
                 },
             },
@@ -67,9 +67,8 @@ app.register(cors, {
 })
 
 app.setErrorHandler((error, request, reply) => {
-    console.log(error)
-
     if (error instanceof ZodError) {
+        console.log(error.format())
         reply.status(400).send({ message: 'Validation error.', issues: error.format() })
     }
 
