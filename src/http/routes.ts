@@ -59,6 +59,38 @@ export async function appRoutes(app: FastifyInstance) {
                         email: { type: 'string', example: 'user@example.com'}
                     }
                 },
+                400: {
+                    description: 'Validation error',
+                    type: 'object',
+                    properties: {
+                        message: { 
+                            type: 'string', 
+                            example: 'Validation error'
+                        },
+                        issues: {
+                            type: 'object',
+                            properties: {
+                                _errors: {
+                                    type: 'array',
+                                    items: {
+                                        type: 'string'
+                                    }
+                                },
+                                email: {
+                                    type: 'object',
+                                    properties: {
+                                        _errors: {
+                                            type: 'array',
+                                            items: {
+                                                type: 'string'
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                },
                 409: {
                     description: 'Email already exists',
                     type: 'object',
@@ -66,7 +98,7 @@ export async function appRoutes(app: FastifyInstance) {
                         message: { 
                             type: 'string', 
                             example: 'Email already exists'
-                        },
+                        }
                     },
                 },
                 500: {
