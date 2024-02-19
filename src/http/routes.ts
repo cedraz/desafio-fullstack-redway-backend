@@ -47,8 +47,8 @@ export async function appRoutes(app: FastifyInstance) {
                 type: 'object',
                 required: ['email'],
                 properties: {
-                    email: { type: 'string', format: 'email'},
-                },
+                    email: { type: 'string' }
+                }
             },
             response: {
                 200: {
@@ -58,17 +58,6 @@ export async function appRoutes(app: FastifyInstance) {
                         message: { type: 'string', example: 'Email registered' },
                         email: { type: 'string', example: 'user@example.com'}
                     }
-                },
-                400: {
-                    description: 'Invalid email',
-                    type: 'object',
-                    properties: {
-                        message: { 
-                            type: 'string', 
-                            example: 'Validation error.'
-                        },
-                        // issues: {}
-                    },
                 },
                 409: {
                     description: 'Email already exists',
@@ -92,5 +81,5 @@ export async function appRoutes(app: FastifyInstance) {
                 }
             }
         },
-    } ,registerEmail)
+    }, registerEmail)
 }

@@ -21,6 +21,8 @@ export async function registerEmail(request: FastifyRequest, reply: FastifyReply
             return reply.status(409).send({ message: error.message })
         }
 
+        console.log(error)
+
         throw error
     }
 }

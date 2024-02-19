@@ -67,6 +67,8 @@ app.register(cors, {
 })
 
 app.setErrorHandler((error, request, reply) => {
+    console.log(error)
+
     if (error instanceof ZodError) {
         reply.status(400).send({ message: 'Validation error.', issues: error.format() })
     }

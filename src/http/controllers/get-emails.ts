@@ -5,7 +5,7 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 export async function getEmails(request: FastifyRequest, reply: FastifyReply) {
     try {
         const getEmailsUseCase = makeGetEmailsUseCase()
-
+        
         const { emails } = await getEmailsUseCase.handle()
 
         return reply.status(201).send({ emails })
@@ -13,6 +13,8 @@ export async function getEmails(request: FastifyRequest, reply: FastifyReply) {
         if (error instanceof NoEmailsFoundError) {
             return reply.status(409).send({ message: error.message })
         }
+
+        console.log(error)
 
         throw error
     }
