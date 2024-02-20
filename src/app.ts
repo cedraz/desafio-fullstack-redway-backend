@@ -17,15 +17,14 @@ export const app = fastify()
 const swaggerOptions = {
     swagger: {
         info: {
-            title: 'My Title',
-            description: 'My Description.',
+            title: 'Redway API documentation',
+            description: 'API documentation for the Redway Fullstack challenge.',
             version: '1.0.0',
         },
         host: 'localhost',
         schemes: ['http', 'https'],
         consumes: ['application/json'],
         produces: ['application/json'],
-        tags: [{ name: 'Default', description: 'Default' }],
     }
 }
 
