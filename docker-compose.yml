@@ -1,5 +1,4 @@
 version: '3'
-
 services:
   api-solid-pg:
     image: bitnami/postgresql
@@ -9,3 +8,13 @@ services:
       - POSTGRESQL_USERNAME=docker
       - POSTGRESQL_PASSWORD=docker
       - POSTGRESQL_DATABASE=apiredway
+
+  api:
+    build: .
+    image: cedraz/redway-challenge
+    ports:
+      - 3333:3333
+    volumes:
+      - .:/app
+    depends_on:
+      - api-solid-pg
