@@ -8,7 +8,6 @@ Primeiro de tudo instale o Docker e o Docker Compose
 
 Caso esteja utilizando ubuntu, é necessário adicionar o sudo antes de qualquer comando envolvendo o docker, exemplo:
 
-
 `sudo docker ...`
 
 para criar o container, execute o comando:
@@ -16,6 +15,10 @@ para criar o container, execute o comando:
 ```sh
 sudo docker compose up
 ```
+
+Para acessar a documentação, acesse:
+
+http://localhost:3333/docs
 
 Caso não deseje que os logs da aplicação apareçam utilize a flag "-d", ela serve para rodar o container em modo "detached", ou seja, em segundo plano, sem mostrar os logs no terminal.
 
